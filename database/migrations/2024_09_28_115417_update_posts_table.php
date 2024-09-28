@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
+
             //creo la colonna per la foreign key 
             $table->unsignedBigInteger('category_id')->nullable()->after('id');
-
-            //creo la FK sulla colonna creata 
+            
+            //creo la FK sulla colonna creata
             $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('set null');
+            ->references('id')
+            ->on('categories')
+            ->onDelete('set null');
         });
     }
 
@@ -29,11 +30,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            //sintassi per eliminare la FK inserendo il nome della foreign key 
-            $table->dropForeign('posts_category_id_foreign');
-
             //sintassi per eliminare la FK inserendo il nome della colonna con la FK 
-            $table->dropForeign(['cartegory_id']);
+            $table->dropForeign(['category_id']);
+            $table->dropColumn('category_id');
         });
     }
 };
+
+    
