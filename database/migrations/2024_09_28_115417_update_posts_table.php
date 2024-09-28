@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+ /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            //creo la colonna per la foreing kay 
-            $table-> unsignedBigInteger('category_id')->after('id');
+            //creo la colonna per la foreign key 
+            $table->unsignedBigInteger('category_id')->nullable()->after('id');
 
-            //vreo la FK sulla colonna creata 
-            $table->foreing('category_id')
+            //creo la FK sulla colonna creata 
+            $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
                 ->onDelete('set null');
@@ -29,10 +29,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            //elimino la FK
-            $table->dropForeing();
+            //sintassi per eliminare la FK inserendo il nome della foreign key 
+            $table->dropForeign('posts_category_id_foreign');
 
-            //elimino la colonna
+            //sintassi per eliminare la FK inserendo il nome della colonna con la FK 
+            $table->dropForeign(['cartegory_id']);
         });
     }
 };
