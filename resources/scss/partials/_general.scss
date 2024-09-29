@@ -16,9 +16,11 @@ header, aside{
     
 }
 aside{
-    width: 150px;
+    width: 200px;
     height: 100%;
-   
+    ul{
+        padding-left: 1rem;
+    }
 }
 .content{
     overflow: auto;

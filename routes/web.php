@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\postController;
 use App\Http\Controllers\Guest\PageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->group(function (){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::get('category-posts', [CategoryController::class, 'categoryPosts'])->name('categoryPosts');
         Route::resource('posts', postController::class);
     });
     

@@ -15,6 +15,7 @@
             <tr>
             <th scope="col"># Id</th>
             <th scope="col">Titolo</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Data</th>
             <th scope="col">Azione</th>
             </tr>
@@ -24,6 +25,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
+                    <td>{{$post->category->name}}</td>
                     <td>{{( $post->created_at )->format('d/m/Y')}}</td>
                     <td class="d-flex justify-content-between">
                         <a href="{{ route('admin.posts.show', ['post' => $post->id])}}" class="btn btn-primary">Dettagli</a>
