@@ -14,7 +14,16 @@
                   {{ $message }}
               </small>
            @enderror
-       </div>  
+       </div> 
+       <div class="mb-3">
+        <label for="category" class="form-lable">Categoria</label>
+        <select class="form-select" id="category" aria-label="Floating label select example">
+            <option name="category_id" selected>Seleziona una categoria</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{$category->name}}</option>
+                @endforeach
+          </select>
+       </div> 
        <div class="mb-3">
            <label for="content" class="form-label">Contenuto</label>
            <textarea class="form-control @error('txt') is-invalid @enderror" id="content" name="txt" placeholder="inserisci il contenuto">{{ old('txt') }}</textarea>

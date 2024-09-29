@@ -14,7 +14,7 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    protected $fillable = ['title', 'slug', 'txt', 'reading_time'];
+    protected $fillable = ['category_id', 'title', 'slug', 'txt', 'reading_time'];
 
     protected $casts = [
 

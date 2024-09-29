@@ -1,5 +1,5 @@
 
-<form 
+<form class="d-inline-flex"
     action="{{ $route }}" 
     method="POST"
     onsubmit="return confirm('{{ $message }}')">

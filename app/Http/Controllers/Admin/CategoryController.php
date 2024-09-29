@@ -66,6 +66,7 @@ class CategoryController extends Controller
 
     public function categoryPosts(){
         $categories = Category::all();
-        dump($categories);
+   
+        return view('admin.categories.categoryPosts', compact('categories'));
     }
 }

@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
-                    <td>{{$post->category->name}}</td>
+                    <td>{{ $post->category ? $post->category->name : 'Nessuna categoria' }}</td>
                     <td>{{( $post->created_at )->format('d/m/Y')}}</td>
                     <td class="d-flex justify-content-between">
                         <a href="{{ route('admin.posts.show', ['post' => $post->id])}}" class="btn btn-primary">Dettagli</a>
