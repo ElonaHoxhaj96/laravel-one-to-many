@@ -8,11 +8,16 @@
        @csrf
        <div class="mb-3">
            <label for="title" class="form-label">Titolo</label>
-           <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="inserisci il titolo" value="{{ old('title') }}">
+           <input 
+           type="text" 
+           class="form-control @error('title') is-invalid @enderror" 
+           id="title" 
+           name="title" 
+           placeholder="inserisci il titolo" 
+           value="{{ old('title') }}"
+           >
            @error('title')
-              <small class="text-danger">
-                  {{ $message }}
-              </small>
+              <small class="text-danger"> {{ $message }} </small>
            @enderror
        </div> 
        <div class="mb-3">
@@ -20,13 +25,22 @@
         <select class="form-select" id="category" aria-label="Floating label select example">
             <option name="category_id" selected>Seleziona una categoria</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{$category->name}}</option>
+                    <option 
+                    value="{{ $category->id }}"
+                    @if(old('category_id') == $category->id) selected @endif
+                    >{{$category->name}}</option>
                 @endforeach
           </select>
        </div> 
        <div class="mb-3">
            <label for="content" class="form-label">Contenuto</label>
-           <textarea class="form-control @error('txt') is-invalid @enderror" id="content" name="txt" placeholder="inserisci il contenuto">{{ old('txt') }}</textarea>
+           <textarea 
+                class="form-control @error('txt') is-invalid @enderror" 
+                id="content" 
+                name="txt" 
+                placeholder="inserisci il contenuto"
+                value="{{ old('txt') }}">
+            </textarea>
            @error('txt')
               <small class="text-danger">
                   {{ $message }}

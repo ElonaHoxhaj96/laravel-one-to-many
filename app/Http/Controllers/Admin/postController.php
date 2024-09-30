@@ -59,16 +59,18 @@ class postController extends Controller
      */
     public function edit(string $id)
     {
+        $categories = Category::all();
         $posts = Post::find($id);
-        return view('admin.posts.edit', compact('posts'));
+        return view('admin.posts.edit', compact('posts', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, string $id)
     {
         $data = $request->all();
+        // dd($data);
         $posts = Post::find($id);
 
           //se il titolo cambia cambia lo slug altimenti mantengo il solito 
