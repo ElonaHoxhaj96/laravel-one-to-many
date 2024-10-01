@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Functions\Helper;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        dump($categories);
         return view('admin.categories.index', compact('categories')); 
     }
 
@@ -31,7 +31,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Helper::generateSlug($data['name'], Category::class);
+        $category = Category::create($data);
+        return redirect()->route('admin.categories.index');
     }
 
     /**

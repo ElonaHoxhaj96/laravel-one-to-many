@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 <form class="d-flex justify-content-between mt-3" action="{{ route('admin.categories.store')}}", method="POST">
                     @csrf
                     <input type="text" name="name" class="form-control me-3" placeholder="Nuova categoria">
@@ -21,15 +21,26 @@
 
                 </form>
                 <table class="table table-striped mt-5">
-                    @foreach ($categories as $category)
                         <tbody>
-                            <tr>
-                                <td>{{$category->name}}</td>
-                                <td>Invia</td>
-                                <td>Elimina</td>
-                            </tr>
+                            @foreach ($categories as $category)
+                                <tr>
+                                    <td>
+                                        <form action="{{ route('admin.categories.update', $category)}}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="text" name="name" value="{{$category->name}}">
+                                        </form>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-warning " type="submit">Aggiorna</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger " type="submit">Elimina</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                    @endforeach
                 </table>
             </div>
         </div>
